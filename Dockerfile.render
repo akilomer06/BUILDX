@@ -8,5 +8,5 @@ RUN pip install --no-cache-dir -r requirements-lock.txt && pip install --no-cach
 COPY scripts/render_entrypoint.py /app/render_entrypoint.py
 ENV VEILMINT_DB=/data/synthetic-demo.sqlite3
 EXPOSE 10000
-# Root only initializes disk ownership; entrypoint drops privileges before serving.
+# Root only initializes ephemeral data ownership; entrypoint drops privileges before serving.
 ENTRYPOINT ["python", "/app/render_entrypoint.py"]

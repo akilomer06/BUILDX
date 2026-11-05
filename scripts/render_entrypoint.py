@@ -1,4 +1,4 @@
-"""Initialize a fresh cloud disk, then run the API as its non-root service user."""
+"""Initialize ephemeral demo storage, then run the API as its non-root user."""
 import os
 from pathlib import Path
 

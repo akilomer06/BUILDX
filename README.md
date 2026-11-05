@@ -288,6 +288,14 @@ expose the operator port. The existing phase8 runbook documents firewall/LAN set
 Persistent volume and policies are preserved. Phase 9 adds only DEMO enrichment
 and its independent schema marker; backups precede deployment.
 
+## Cloud demo hosting
+
+The frontend is hosted at [VEILMINT on Vercel](https://veilmint-buildx.vercel.app).
+Backend activation and connection are separate; the hosted setup notice reports
+whether a backend URL is configured. The Render blueprint uses **Free** compute
+with no paid disk or database. Cloud demo records reset on sleep, restart or
+redeploy. See [cloud deployment steps](docs/cloud-deployment.md).
+
 Audit: [coverage](docs/audit/implementation-coverage.md),
 [findings](docs/audit/critical-findings.md),
 [consumer matrix](docs/architecture/consumer-field-matrix.md),

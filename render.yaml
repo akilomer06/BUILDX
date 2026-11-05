@@ -2,13 +2,9 @@ services:
   - type: web
     name: veilmint-backend
     runtime: docker
-    plan: starter
+    plan: free
     dockerfilePath: ./Dockerfile.render
     healthCheckPath: /ready
-    disk:
-      name: veilmint-bank-data
-      mountPath: /data
-      sizeGB: 1
     envVars:
       - key: VEILMINT_DB
         value: /data/synthetic-demo.sqlite3

@@ -29,7 +29,7 @@ export default async function handler(req,res){
     return fail(401,'Operator sign-in required. Open /api/cloud-login to sign in.')
   }
   if(path==='/api/cloud-login'){res.setHeader('Location','/');return res.status(302).end()}
-  if(!process.env.BACKEND_URL)return fail(503,'Persistent backend hosting is not connected yet. See deployment status.')
+  if(!process.env.BACKEND_URL)return fail(503,'Backend hosting is not connected yet. See deployment status.')
   let base
   try{
     base=new URL(process.env.BACKEND_URL)
