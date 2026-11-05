@@ -1,0 +1,11 @@
+# Actual source and boundary trace
+
+Existing customer path: SQLite nexus_customers/accounts/immutable ledger → Bank.account(source=True) → explicit customer DTO excludes full account/contact internals → BankProtection / approved APIEnforcer → customer response → safe metadata through StructuredLogPipeline before protected-log insertion. Optional response snapshots hold the served DTO in memory, not the pre-DTO producer. That viewer is not the producer baseline.
+
+New controlled scenario: selected existing account → opt-in nexus_demo_producer row (profile/internal/account JSON domains, origin DEMO, revision 1) + actual bank ledger/account data → one canonical producer object → AST report for the chosen Python module → consumer-specific PolicyStore revision and human review → APIEnforcer mode and digest validation → real Python consume() → safe scenario metadata through the shared structured-log pipeline → correlated trace sent only to authenticated operator.
+
+The three representations remain separate. API minimization never updates nexus_accounts, profiles or ledger rows. Log events contain server-owned metadata, not full DTOs. Producer version is a SHA256 of serialized canonical content; analysis uses a stable schema sample, so changing balance does not invalidate a code/schema policy. Changing schema/consumer evidence changes the analysis digest. A matrix rejects concurrent producer-version changes rather than claiming equal inputs.
+
+Policy databases: `<main-stem>.consumer-{overview,payments,notifications,risk}.sqlite3`, separate from the golden, account and log policies. Missing/pending/stale policy retains the baseline with warnings. Only operator endpoints can return this privileged baseline; customer proxy blocks all /api/operator routes. Services are in-process logical adapters, not containers. Operator scenario selection is authorized dispatch, not a public service-identity header.
+
+Migration: additive nexus_consumer_schema(version=1), nexus_demo_producer with foreign key to internal account, origin CHECK DEMO. Existing bank schema version 3 and original policy schema marker are unchanged. Seed uses INSERT OR IGNORE; attaching profiles adds no funds, ledger entries or government identifiers. Clean registration remains empty. Existing CLI funding/beneficiaries/transfers can populate multiple sandbox accounts explicitly.

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Synthetic NEXUS BANK account response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["account_id", "account_type", "currency", "available_balance", "recent_transactions", "account_number", "customer_phone", "customer_address", "aadhaar_number", "internal_risk_flag"],
+  "properties": {
+    "account_id": {"type": "string"},
+    "account_type": {"type": "string"},
+    "currency": {"type": "string"},
+    "available_balance": {"type": "number"},
+    "recent_transactions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["description", "amount"],
+        "properties": {
+          "description": {"type": "string"},
+          "amount": {"type": "number"}
+        }
+      }
+    },
+    "account_number": {"type": "string"},
+    "customer_phone": {"type": "string"},
+    "customer_address": {"type": "string"},
+    "aadhaar_number": {"type": "string"},
+    "internal_risk_flag": {"type": "boolean"}
+  }
+}

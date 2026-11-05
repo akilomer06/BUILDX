@@ -1,0 +1,11 @@
+.git
+.venv
+.env
+.env.*
+data
+**/node_modules
+**/dist
+**/.vercel
+**/.env*
+**/*.sqlite3*
+**/*.log

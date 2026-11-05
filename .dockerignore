@@ -1,0 +1,13 @@
+.git
+.venv
+data
+frontend/node_modules
+frontend/dist
+build
+dist
+**/__pycache__
+.pytest_cache
+.env
+.env.*
+*.pdf
+analysis-report.json

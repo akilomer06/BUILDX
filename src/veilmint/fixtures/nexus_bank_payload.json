@@ -1,0 +1,14 @@
+{
+  "account_id": "SYNTHETIC_ACCOUNT_ID",
+  "account_type": "DEMO_CHECKING",
+  "currency": "AED",
+  "available_balance": 123.45,
+  "recent_transactions": [
+    {"description": "SYNTHETIC_DEMO_TRANSACTION", "amount": -12.34}
+  ],
+  "account_number": "NOT_A_REAL_ACCOUNT_NUMBER",
+  "customer_phone": "NOT_A_REAL_PHONE_NUMBER",
+  "customer_address": "NOT_A_REAL_ADDRESS",
+  "aadhaar_number": "NOT_A_REAL_AADHAAR_NUMBER",
+  "internal_risk_flag": false
+}

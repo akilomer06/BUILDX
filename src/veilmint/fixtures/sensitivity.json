@@ -1,0 +1,12 @@
+{
+  "account_id": "INTERNAL",
+  "account_type": "GENERAL",
+  "currency": "GENERAL",
+  "available_balance": "FINANCIAL",
+  "recent_transactions": "FINANCIAL",
+  "account_number": "HIGH",
+  "customer_phone": "MEDIUM",
+  "customer_address": "MEDIUM",
+  "aadhaar_number": "HIGH",
+  "internal_risk_flag": "INTERNAL"
+}

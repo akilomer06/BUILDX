@@ -1,0 +1,38 @@
+services:
+  backend:
+    build: .
+    environment:
+      VEILMINT_DB: /data/synthetic-demo.sqlite3
+      VEILMINT_MODE: ${VEILMINT_MODE:-OBSERVE}
+      VEILMINT_RESPONSE_INSPECTION_DEMO: ${VEILMINT_RESPONSE_INSPECTION_DEMO:-false}
+      VEILMINT_HMAC_KEY: ${VEILMINT_HMAC_KEY:-}
+      VEILMINT_OPERATOR_TOKEN: ${VEILMINT_OPERATOR_TOKEN:?Run python scripts/configure_bank.py first}
+      NEXUS_MODE: ${NEXUS_MODE:-ENFORCE}
+      NEXUS_SECURE_COOKIE: ${NEXUS_SECURE_COOKIE:-false}
+    volumes:
+      - demo-data:/data
+    restart: unless-stopped
+  frontend:
+    image: veilmint-workbench:local
+    build: ./frontend
+    environment:
+      VEILMINT_OPERATOR_TOKEN: ${VEILMINT_OPERATOR_TOKEN:?Run python scripts/configure_bank.py first}
+    ports:
+      - "127.0.0.1:${VEILMINT_WEB_PORT:-8080}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+  customer:
+    image: veilmint-workbench:local
+    entrypoint: ["/bin/sh", "-c", "cp /etc/nginx/customer.conf /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]
+    ports:
+      - "${NEXUS_BIND:-127.0.0.1}:${NEXUS_WEB_PORT:-8081}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+      frontend:
+        condition: service_started
+    restart: unless-stopped
+volumes:
+  demo-data:

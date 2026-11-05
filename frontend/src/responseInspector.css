@@ -1,0 +1,107 @@
+.response-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #03070dbe;
+  backdrop-filter: blur(5px);
+}
+.response-dialog-window {
+  display: flex;
+  flex-direction: column;
+  width: min(1040px, 100%);
+  min-width: 0;
+  max-height: calc(100dvh - 48px);
+  overflow: hidden;
+  border: 1px solid #416453;
+  border-radius: 14px;
+  background: #101923;
+  color: #dce7f1;
+  box-shadow: 0 25px 110px #000b;
+  animation: response-dialog-enter .18s ease-out;
+}
+.response-dialog-window[data-mode=standard] { border-color: #66513a; }
+.response-dialog-heading {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  border-bottom: 1px solid #2b3b4b;
+}
+.response-dialog-heading h2 { font-size: 18px; margin-bottom: 12px; }
+.response-dialog-heading p { display: flex; align-items: center; gap: 10px; font-size: 11px; }
+.response-dialog-heading code { overflow-wrap: anywhere; }
+.response-dialog-heading .button { white-space: nowrap; }
+.response-dialog-window .dashboard-mode-bar {
+  margin: 0;
+  padding: 13px 24px;
+  border: 0;
+  border-bottom: 1px solid #2b3b4b;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+.response-dialog-window .mode-bar-copy small { display: none; }
+.response-dialog-content { overflow: auto; min-height: 0; overscroll-behavior: contain; }
+.response-dialog-request { margin: 0; padding: 12px 24px 0; font-size: 10px; overflow-wrap: anywhere; }
+.response-json-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 24px 14px; }
+.response-json-heading>div { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; }
+.response-json-heading strong { font-size: 12px; }
+.response-json-heading>div>span { color: #83bca5; font: 10px ui-monospace, Consolas, monospace; }
+.response-json-heading .button { padding: 8px 12px; white-space: nowrap; }
+.response-json-viewer {
+  display: block;
+  width: auto;
+  min-width: 0;
+  max-height: none;
+  margin: 0 24px;
+  padding: 14px 0;
+  border: 1px solid #304356;
+  border-radius: 8px;
+  background: #0b131d;
+  font: 13px/1.85 ui-monospace, Consolas, monospace;
+  white-space: normal;
+  overflow: visible;
+}
+.response-json-viewer>code { display: block; width: 100%; min-width: 0; }
+.response-json-row {
+  display: grid;
+  grid-template-columns: 3ch minmax(0, 1fr) auto;
+  align-items: start;
+  column-gap: 12px;
+  min-width: 0;
+  padding: 2px 12px;
+  border-left: 2px solid transparent;
+}
+.response-json-row.json-exposed { border-left-color: #cf786e; }
+.response-json-row.json-masked { border-left-color: #55c7a5; }
+.response-json-code { display: block; min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.response-json-number { color: #536b81; font-size: 10px; text-align: right; padding-top: 3px; user-select: none; }
+.response-json-state { font: 8px/3 ui-sans-serif, system-ui, sans-serif; letter-spacing: .6px; color: #d99b8e; user-select: none; }
+.json-masked .response-json-state { color: #74c8a9; }
+.response-header-details { margin: 0 24px 16px; border: 1px solid #293c50; border-radius: 6px; }
+.response-header-details summary { padding: 12px 15px; font-size: 11px; cursor: pointer; color: #a9b9c9; }
+.response-header-details .response-http-headers { border-bottom: 0; font-size: 11px; padding: 14px 15px; }
+.response-dialog-window .comparison-source { padding: 8px 24px 18px; }
+.response-dialog-window .comparison-result { animation: none; }
+@keyframes response-dialog-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 650px) {
+  .response-dialog-overlay { padding: 10px; }
+  .response-dialog-window { max-height: calc(100dvh - 20px); border-radius: 10px; }
+  .response-dialog-heading { padding: 16px; gap: 12px; align-items: flex-start; }
+  .response-dialog-heading p { align-items: flex-start; font-size: 10px; }
+  .response-dialog-heading .button { padding: 8px; font-size: 10px; }
+  .response-dialog-window .dashboard-mode-bar { padding: 12px 16px; }
+  .response-dialog-window .mode-bar-copy { display: none; }
+  .response-dialog-request { padding: 12px 16px 0; }
+  .response-json-heading { padding: 14px 16px; }
+  .response-json-viewer { margin: 0 12px; font-size: 11px; }
+  .response-json-row { column-gap: 7px; padding-left: 6px; padding-right: 8px; }
+  .response-json-state { font-size: 7px; letter-spacing: 0; }
+  .response-header-details { margin-left: 12px; margin-right: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .response-dialog-window { animation: none; } }

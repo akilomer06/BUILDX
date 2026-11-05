@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: veilmint-backend
+    runtime: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile.render
+    healthCheckPath: /ready
+    disk:
+      name: veilmint-bank-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: VEILMINT_DB
+        value: /data/synthetic-demo.sqlite3
+      - key: VEILMINT_MODE
+        value: OBSERVE
+      - key: NEXUS_MODE
+        value: ENFORCE
+      - key: NEXUS_SECURE_COOKIE
+        value: true
+      - key: VEILMINT_RESPONSE_INSPECTION_DEMO
+        value: true
+      - key: VEILMINT_OPERATOR_TOKEN
+        sync: false
+      - key: VEILMINT_HMAC_KEY
+        generateValue: true

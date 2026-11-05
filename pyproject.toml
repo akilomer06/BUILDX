@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "veilmint"
+version = "0.8.0"
+description = "NEXUS BANK sandbox with the VEILMINT evidence-compiled protection workbench"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["jsonschema>=4.23,<5", "referencing>=0.35,<1", "fastapi>=0.115,<1", "uvicorn>=0.30,<1", "argon2-cffi>=25.1,<26"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "httpx>=0.27,<1"]
+
+[project.scripts]
+veilmint = "veilmint.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+veilmint = ["fixtures/*.json", "fixtures/*.py"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
