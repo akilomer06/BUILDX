@@ -1,5 +1,27 @@
 # GitHub + Vercel frontend + Render Free demo backend
 
+## Active deployment
+
+- Dashboard: https://veilmint-buildx.vercel.app
+- Customer bank: https://veilmint-buildx.vercel.app/bank/
+- Operator sign-in: https://veilmint-buildx.vercel.app/api/cloud-login
+- Backend readiness: https://veilmint-backend.onrender.com/ready
+- Render service: `srv-dbltevpsrm7s73ec5uc0` in the OmerAkil workspace.
+
+The active backend was created with the official Render CLI on the **Free**
+plan in Frankfurt. It uses the existing root `Dockerfile`, runs as the
+`veilmint` user and listens on port 8000 (`PORT=8000`). Production Vercel
+`BACKEND_URL` is connected to its HTTPS origin. Cloud-only credentials are saved
+in the local ignored `.env.cloud` file; never commit or share that file.
+Customers can register at `/bank/`; new accounts have zero sandbox funds.
+
+The retained `render.yaml` is an alternative reproducible Blueprint using
+`Dockerfile.render`, not an active Blueprint managing the current service.
+Live configuration was set through the CLI; do not create a duplicate service
+by applying the Blueprint to the active deployment.
+
+## Recreating the deployment
+
 Vercel project root is **frontend/**. `frontend/vercel.json` builds the Vite app,
 routes SPA pages and sends /api through the server-only Node proxy. Never place
 an operator token in VITE_* variables or browser code.

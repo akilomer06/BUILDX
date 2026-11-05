@@ -1,4 +1,4 @@
-# VEILMINT — Local synthetic workbench
+# VEILMINT â€” Local synthetic workbench
 
 **Phase 8 adds NEXUS BANK:** real registration/login, customer-owned accounts,
 beneficiaries, atomic sandbox transfers and a live traffic view using the shared
@@ -120,8 +120,8 @@ is preserved. SQLite initialization is automatic. Its schema uses a simple
 version marker, separate revision/decision records and a stored compiled JSON
 snapshot; reads verify the snapshot against its persisted inputs and decision.
 
-Default log actions are GENERAL→ALLOW, INTERNAL/MEDIUM→MASK,
-FINANCIAL/HIGH→DROP. `create --log-mapping mapping.json` accepts overrides by
+Default log actions are GENERALâ†’ALLOW, INTERNAL/MEDIUMâ†’MASK,
+FINANCIAL/HIGHâ†’DROP. `create --log-mapping mapping.json` accepts overrides by
 sensitivity label, independently of usage. A JSON list passed with
 `--known-fields fields.json` includes newly discovered fields as UNKNOWN/KEEP
 with warnings. Fields missing valid sensitivity also remain ineligible for
@@ -129,7 +129,7 @@ removal. Policy output is deterministically ordered; timestamps are generated
 only when a revision or review is stored, never during compilation.
 
 Before approval the golden policy plans **10 KEEP / 0 REMOVE**. Approving all
-four candidates plans **6 KEEP / 4 REMOVE (10 → 6)**, preserving the five USED
+four candidates plans **6 KEEP / 4 REMOVE (10 â†’ 6)**, preserving the five USED
 fields and the UNKNOWN risk flag. Compiling a policy alone changes no response
 or log event.
 
@@ -150,7 +150,7 @@ Missing, unapproved, corrupt or stale policies preserve API data with warnings.
 
 - `GET /health`: local process health, no policy required.
 - `GET /api/demo/account?mode=ENFORCE`: labelled synthetic original/output
-  inspector and a separate trace. With the approved golden policy this is 10→6.
+  inspector and a separate trace. With the approved golden policy this is 10â†’6.
 - `GET /api/demo/account/response`: the response payload only, using the
   configured mode. Policy/mode metadata lives in the audit table.
 - `POST /api/demo/log`: generates a synthetic event server-side, protects it,
@@ -205,7 +205,7 @@ local backend. Five views share real persisted state:
    components, reads the stored protected event and reports each PASS/FAIL check.
 
 For the golden story, create a revision, approve the four candidates, inspect
-the real 10→6 response and protected log, then run a fresh canary. A stale or
+the real 10â†’6 response and protected log, then run a fresh canary. A stale or
 unapproved revision cannot produce a successful canary. Results identify their
 run and policy revision; no previous PASS is reused as a new result.
 
@@ -218,7 +218,7 @@ the same markers must be protected from logs according to their log actions.
 Backend routes and request contracts are in [docs/api.md](docs/api.md). Frontend
 checks are `npm run typecheck`, `npm test`, and `npm run build` from `frontend/`.
 
-## Demo reliability and deployment (Phases 5–6)
+## Demo reliability and deployment (Phases 5â€“6)
 
 ```powershell
 python -m veilmint demo init --db data/synthetic-demo.sqlite3 --approve-synthetic
@@ -238,7 +238,7 @@ Dependencies are pinned in `requirements-lock.txt` and `frontend/package-lock.js
 
 ## Scope and limits
 
-Phases 1–6 and 8 provide analysis, explicit review, policy compilation, API runtime
+Phases 1â€“6 and 8 provide analysis, explicit review, policy compilation, API runtime
 minimisation, protected local log storage, a connected workbench and scoped
 canary verification, plus an authenticated customer sandbox and real traffic
 integration. Phase 7 is postponed. This project uses only synthetic data and has
@@ -291,10 +291,11 @@ and its independent schema marker; backups precede deployment.
 ## Cloud demo hosting
 
 The frontend is hosted at [VEILMINT on Vercel](https://veilmint-buildx.vercel.app).
-Backend activation and connection are separate; the hosted setup notice reports
-whether a backend URL is configured. The Render blueprint uses **Free** compute
-with no paid disk or database. Cloud demo records reset on sleep, restart or
-redeploy. See [cloud deployment steps](docs/cloud-deployment.md).
+The connected [Render backend](https://veilmint-backend.onrender.com/ready) uses
+**Free** compute with no paid disk or database. Cloud demo records reset on sleep,
+restart or redeploy. Customers can register at `/bank/`; operator credentials
+are stored only in the local ignored `.env.cloud` file. See
+[cloud deployment steps](docs/cloud-deployment.md).
 
 Audit: [coverage](docs/audit/implementation-coverage.md),
 [findings](docs/audit/critical-findings.md),
